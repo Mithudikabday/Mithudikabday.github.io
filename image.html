@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Masonry Layout con CSS Grid</title>
+    <title>KUCH LAMHEEE.....</title>
     <link href='https://fonts.googleapis.com/css?family=Anybody' rel='stylesheet'>
     <style>
     body {
@@ -160,7 +162,7 @@
 	 background-color: #fff;
 	 width: 50px;
 	 height: 50px;
-position: absolute;
+   position: absolute;
 	 transform: rotate(45deg);
 }
  .footer::before, .footer::after {
@@ -188,10 +190,22 @@ position: absolute;
 	 left: 50%;
 
 }
+
+    
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
  
       </style>
 </head>
 <body>
+  <div class="preloader">
+   
+
+    <div class="spinner"></div>
+  </div>
     <h1>KUCH LAMHEEEE.....&#128584;</h1>
 
     <div class="gallery" id="gallery">
@@ -271,20 +285,23 @@ position: absolute;
             <div class="content"><img src="25.jpeg" alt=""></div>
         </div>
     </div>
-    <footer>
-<div class="footer-body">
-  <h3 style="text-align: center;font-size: xx-large;color: white; font-family: Verdana, Geneva, Tahoma, sans-serif;">Click the HEART &#9829; babuuuddiiiii </h3>
-  <a href="wish.html">
-  <div class="center">
-    <div class="footer">
-
-  </div></a>
-</div>
-</footer>
+  
 
 </body>
 <script>
-    var gallery = document.querySelector('#gallery');
+  if (document.cookie.indexOf('visited=true') == -1) {
+        // Set a cookie to remember that the page has been visited
+        var now = new Date();
+        var expireDate = new Date();
+        expireDate.setTime(now.getTime() + 30 * 24 * 60 * 60 * 1000); // Set the cookie to expire in 30 days
+        document.cookie = 'visited=true; expires=' + expireDate.toGMTString();
+        
+        // Reload the page
+        location.reload();
+    }
+
+
+var gallery = document.querySelector('#gallery');
 var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
 var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
 var resizeAll = function () {
@@ -316,9 +333,6 @@ gallery.querySelectorAll('.gallery-item').forEach(function (item) {
         item.classList.toggle('full');        
     });
 });
-let icon = document.querySelector('ion-icon');
-icon.onclick = function(){
-  icon.classList.toggle('active');
-}
+
 </script>
 </html>
