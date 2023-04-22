@@ -1,338 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Web Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+	<style>
+    body{
+      background-image: url('27.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+      border:6px outset #545565;
+    }
+ .gallery {
+			display: flex;
+			flex-wrap: wrap;
+		
+  gap: 0;
+		}
 
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>KUCH LAMHEEE.....</title>
-    <link href='https://fonts.googleapis.com/css?family=Anybody' rel='stylesheet'>
-    <style>
-    body {
-        background-color: #eee;
-      }
-     
-      .hello {
-        opacity: 1 !important;
-      }
-      .full {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-      }
-      .full .content {
-        background-color: rgba(0,0,0,0.75) !important;
-        height: 100%;
-        width: 100%;
-        display: grid;
-      }
-      .full .content img {
-        left: 50%;
-        transform: translate3d(0, 0, 0);
-        animation: zoomin 1s ease;
-        max-width: 100%;
-        max-height: 100%;
-        margin: auto;
-      }
-      .byebye {
-        opacity: 0;
-      }
-      .byebye:hover {
-        transform: scale(0.2) !important;
-      }
-      .gallery {
-        display: grid;
-        grid-column-gap: 8px;
-        grid-row-gap: 8px;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        grid-auto-rows: 8px;
-      }
-      .gallery img {
-        max-width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 0 16px #333;
-        transition: all 1.5s ease;
-      }
-      .gallery img:hover {
-        box-shadow: 0 0 32px #333;
-      }
-      .gallery .content {
-        padding: 4px;
-      }
-      .gallery .gallery-item {
-        transition: grid-row-start 300ms linear;
-        transition: transform 300ms ease;
-        transition: all 0.5s ease;
-        cursor: pointer;
-      }
-      .gallery .gallery-item:hover {
-        transform: scale(1.025);
-      }
-      @media (max-width: 600px) {
-        .gallery {
-          grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
-        }
-      }
-      @media (max-width: 400px) {
-        .gallery {
-          grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
-        }
-      }
-      @-moz-keyframes zoomin {
-        0% {
-          max-width: 50%;
-          transform: rotate(-30deg);
-          filter: blur(4px);
-        }
-        30% {
-          filter: blur(4px);
-          transform: rotate(-80deg);
-        }
-        70% {
-          max-width: 50%;
-          transform: rotate(45deg);
-        }
-        100% {
-          max-width: 100%;
-          transform: rotate(0deg);
-        }
-      }
-      @-webkit-keyframes zoomin {
-        0% {
-          max-width: 50%;
-          transform: rotate(-30deg);
-          filter: blur(4px);
-        }
-        30% {
-          filter: blur(4px);
-          transform: rotate(-80deg);
-        }
-        70% {
-          max-width: 50%;
-          transform: rotate(45deg);
-        }
-        100% {
-          max-width: 100%;
-          transform: rotate(0deg);
-        }
-      }
-      @-o-keyframes zoomin {
-        0% {
-          max-width: 50%;
-          transform: rotate(-30deg);
-          filter: blur(4px);
-        }
-        30% {
-          filter: blur(4px);
-          transform: rotate(-80deg);
-        }
-        70% {
-          max-width: 50%;
-          transform: rotate(45deg);
-        }
-        100% {
-          max-width: 100%;
-          transform: rotate(0deg);
-        }
-      }
-      @keyframes zoomin {
-        0% {
-          max-width: 50%;
-          transform: rotate(-30deg);
-          filter: blur(4px);
-        }
-        30% {
-          filter: blur(4px);
-          transform: rotate(-80deg);
-        }
-        70% {
-          max-width: 50%;
-          transform: rotate(45deg);
-        }
-        100% {
-          max-width: 100%;
-          transform: rotate(0deg);
-        }
-      }
-      .footer {
-	 background-color: #fff;
-	 width: 50px;
-	 height: 50px;
-   position: absolute;
-	 transform: rotate(45deg);
-}
- .footer::before, .footer::after {
-	 content: "";
-	 width: 50px;
-	 height: 50px;
-	 background-color: #fff;
-	 position: absolute;
-	 border-radius: 50%;
-}
- .footer::before {
-	 left: -25px;
-}
- .footer::after {
-	 top: -25px;
-}
- .footer-body {
-	 padding: 5rem;
-	 background-color: #f44336;
+		.gallery-item {
+			width: 300px;
+			position: relative;
+			overflow: hidden;
+			box-shadow: 2px 2px 5px grey;
+			transition: all 0.3s ease-in-out;
+			justify-self: center;
+      border:6px outset #545565;
+		}
 
-}
- .center {
-	 position: absolute;
-	
-	 left: 50%;
+		.gallery-item:hover {
+			box-shadow: 4px 4px 10px grey;
+			transform: scale(1.05);
+		}
 
+		.gallery-item img {
+			width: 100%;
+			height: auto;
+			box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.5);
+		}
+
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			padding-top: 100px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.9);
+		}
+
+		.modal-content {
+			margin: auto;
+			display: block;
+			max-width: 80%;
+			max-height: 80%;
+			animation-name: zoom;
+			animation-duration: 0.6s;
+		}
+
+		.close {
+			color: white;
+			position: absolute;
+			top: 10px;
+			right: 25px;
+			font-size: 35px;
+			font-weight: bold;
+			transition: all 0.3s ease;
+		}
+
+		.close:hover, .close:focus {
+			color: #bbb;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		@keyframes zoom {
+			from {transform:scale(0)}
+			to {transform:scale(1)}
+		}
+
+		@media screen and (max-width: 768px) {
+			.gallery {
+				justify-content: center;
+			}
+			
+			.gallery-item {
+				width: 100%;
+				max-width: 600px;
+				margin: 0 10px 20px;
+			}
+		}
+
+		@media screen and (min-width: 769px) and (max-width: 1024px) {
+			.gallery {
+				justify-content: center;
+			}
+			
+			.gallery-item {
+				width: calc(33.33% - 20px);
+				max-width: 300px;
+				margin: 0 10px 20px;
+			}
+		}
+
+		@media screen and (min-width: 1025px) {
+			.gallery {
+				justify-content: space-between;
+			}
+			
+			.gallery-item {
+				width: calc(25% - 20px);
+				max-width: 300px;
+				margin: 0 0 20px;
+			}
+		}
+    .heart-body {
+  color: #fff;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 5em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-    
-
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
- 
-      </style>
+.heart:before {
+  content: '\2665';
+  color: red;
+}
+  </style>
 </head>
 <body>
-  <div class="preloader">
-   
-
-    <div class="spinner"></div>
-  </div>
-    <h1>KUCH LAMHEEEE.....&#128584;</h1>
-
-    <div class="gallery" id="gallery">
-        <div class="gallery-item">
-            <div class="content"><img src="1.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="2.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="3.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="4.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="5.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="6.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="7.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="8.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="9.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="10.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="11.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="12.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="13.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="14.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="15.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="16.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="17.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="18.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="19.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="20.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="21.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="22.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="23.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="24.jpeg" alt=""></div>
-        </div>
-        <div class="gallery-item">
-            <div class="content"><img src="25.jpeg" alt=""></div>
-        </div>
+  <header>
+    <div class="topnav" style=" background-color: #333; overflow: hidden; height: 80px;">
+      <h1 style="color: white;">KUCH LAMHEEE......</h1>
+    </div> 
+  </header>
+	<div class="gallery">
+    <div class="gallery-item" style="height: 50%;">
+      <img src="1.jpeg" alt="Image 1" onclick="openModal(this);">
     </div>
+    <div class="gallery-item" style="height: 70%">
+      <img src="2.jpeg" alt="Image 2" onclick="openModal(this);">
+    </div>
+    <div class="gallery-item" style="height: 50%">
+      <img src="3.jpeg" alt="Image 3" onclick="openModal(this);">
+    </div>
+    <div class="gallery-item" style="height: 60%;">
+      <img src="4.jpeg" alt="Image 4" onclick="openModal(this);">
+    </div>
+    <div class="gallery-item" style="height: 60%;">
+      <img src="5.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div>
+    <div class="gallery-item" style="height:60% ;">
+      <img src="6.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="7.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%">
+      <img src="8.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="9.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%">
+      <img src="10.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="11.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="12.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="13.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="14.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="15.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="16.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="17.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="18.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="19.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="20.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="21.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="22.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="23.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="24.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div><div class="gallery-item" style="height: 60%;">
+      <img src="25.jpeg" alt="Image 5" onclick="openModal(this);">
+    </div>
+  </div>
   
+  <div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+  </div>
+  <footer>
+    <div
+      style="height: 7%;background-color: rgb(237, 213, 213);color: white; text-align: center;font-style:oblique;padding: 2%; margin-bottom: 0%;">
+      <h1> BETTTTUUDDDDDIIII CLICK ON THE HEART &#9829;&#9829;</h1>
+     <div class="heart-body">
+      <a href="wish.html"> <span class="heart"></span></a>
+      </div>
+    </div>
+  </footer>
+	<script>
+    window.onload = function() {
+  var gallery = document.querySelector('.gallery');
+  var items = gallery.querySelectorAll('.gallery-item');
+  var containerWidth = gallery.offsetWidth;
+  var itemWidth = items[0].offsetWidth;
+  var gap = (containerWidth - (Math.floor(containerWidth / itemWidth) * itemWidth)) / (Math.floor(containerWidth / itemWidth) - 1);
 
+  for (var i = 0; i < items.length; i++) {
+    items[i].style.marginRight = gap + 'px';
+  }
+}
+
+
+  function openModal(img) {
+  var modal = document.getElementById("myModal");
+  var modalImg = document.getElementById("img01");
+  modal.style.display = "block";
+  modalImg.src = img.src;
+  modalImg.alt = img.alt;
+  modalImg.classList.add("animate__animated", "animate__zoomIn"); 
+}
+
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+
+  </script>
 </body>
-<script>
-  if (document.cookie.indexOf('visited=true') == -1) {
-        // Set a cookie to remember that the page has been visited
-        var now = new Date();
-        var expireDate = new Date();
-        expireDate.setTime(now.getTime() + 30 * 24 * 60 * 60 * 1000); // Set the cookie to expire in 30 days
-        document.cookie = 'visited=true; expires=' + expireDate.toGMTString();
-        
-        // Reload the page
-        location.reload();
-    }
-
-
-var gallery = document.querySelector('#gallery');
-var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
-var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
-var resizeAll = function () {
-    var altura = getVal(gallery, 'grid-auto-rows');
-    var gap = getVal(gallery, 'grid-row-gap');
-    gallery.querySelectorAll('.gallery-item').forEach(function (item) {
-        var el = item;
-        el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
-    });
-};
-gallery.querySelectorAll('img').forEach(function (item) {
-    item.classList.add('byebye');
-    if (item.complete) {
-        console.log(item.src);
-    }
-    else {
-        item.addEventListener('load', function () {
-            var altura = getVal(gallery, 'grid-auto-rows');
-            var gap = getVal(gallery, 'grid-row-gap');
-            var gitem = item.parentElement.parentElement;
-            gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
-            item.classList.remove('byebye');
-        });
-    }
-});
-window.addEventListener('resize', resizeAll);
-gallery.querySelectorAll('.gallery-item').forEach(function (item) {
-    item.addEventListener('click', function () {        
-        item.classList.toggle('full');        
-    });
-});
-
-</script>
 </html>
