@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Birthday Box</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('QAfTPu.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+      /* prevent horizontal scrolling */
+    }
+
+    footer {
+      background-color: rgb(237, 213, 213);
+      color: white;
+      text-align: center;
+      font-style: oblique;
+      padding: 2%;
+      margin-bottom: 5%;
+      width: 100%;
+    }
+
+    .container {
+      height: 70vh;
+      /* responsive height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      position: relative;
+      width: 0%;
+      height: 0%;
+      max-width: 30%;
+      /* responsive width */
+      max-height: 60%;
+      /* responsive height */
+      border-radius: 10px;
+      overflow: hidden;
+      transition: 0.2s ease-in;
+      box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .top-message,
+    .bottom-message {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+      font-size: 3vw;
+      /* responsive font size */
+      color: #fff;
+      text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease-in-out;
+      opacity: 0;
+      font-size: vw;
+    }
+
+    .top-message {
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-10deg);
+      background-color: #f1e3e3;
+    }
+
+    .bottom-message {
+      bottom: 15%;
+      left: 50%;
+      transform: translate(-50%, 50%) rotate(-10deg);
+      background-color: #f1e3e3;
+    }
+
+    img {
+      max-width: 30%;
+      height: auto;
+    }
+
+    .gif-container {
+      padding-top: 10%;
+      /* add some space */
+      margin-top: 20%;
+    }
+
+    .gif {
+      max-width: 30%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* adjust font size on smaller screens */
+    @media (max-width: 480px) {
+      .box {
+        max-width: 60%;
+      }
+
+      .top-message,
+      .bottom-message {
+        font-size: 12vw;
+      }
+
+      @media (max-width: 600px) {
+        .box {
+          max-width: 60%;
+        }
+
+        .top-message,
+        .bottom-message {
+          font-size: 8vw;
+          /* adjust font size for smaller screens */
+        }
+
+        @media (max-width: 480px) {
+          .gif {
+            max-width: 80%;
+          }
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div
+      style="background-color: rgb(237, 213, 213);color: white; text-align: center;font-style:oblique;padding: 2%;position: fixed;width: 100%; height: 10%; z-index: 2;margin-bottom: 5%;margin-top: -20%;">
+      <h1>&#127874;&#129395;MITHUDII KA Birthday &#129395;&#127874;</h1>
+    </div>
+  </header>
+  <div class="gif-container">
+    <img class="gif" src="Vanilla-1s-280px.gif" alt="">
+  </div>
+  <div class="container">
+    <div class="box">
+      <div class="top-message">Happy Birthday!</div>
+      <div class="bottom-message">Open me! Mithudii</div>
+    </div>
+  </div>
+  <footer>
+    <div
+      style="height: 7%;background-color: rgb(237, 213, 213);color: white; text-align: center;font-style:oblique;padding: 2%; margin-bottom: 0%;">
+      <h1>&#9829;&#9829; BETTTTUUDDDDDIIII &#9829;&#9829;</h1>
+    </div>
+  </footer>
+
+  <script>
+    const windowHeight = window.innerHeight;
+    const box = document.querySelector('.box');
+    const topMessage = document.querySelector('.top-message');
+    const bottomMessage = document.querySelector('.bottom-message');
+
+    function scrollHandler() {
+      // Get the current scroll position
+      const scrollPos = window.pageYOffset;
+
+      // Calculate the box size based on the scroll position
+      const boxSize = Math.max(scrollPos / 2, 0);
+
+      // Set the box size
+      box.style.width = `${boxSize}%`;
+      box.style.height = `${boxSize}%`;
+
+      // Show/hide the messages based on the scroll position
+      if (scrollPos < windowHeight) {
+        topMessage.style.opacity = 1;
+        bottomMessage.style.opacity = 1;
+      } else {
+        topMessage.style.opacity = 0;
+        bottomMessage.style.opacity = 0;
+      }
+    }
+
+    window.addEventListener('scroll', scrollHandler);
+
+    function clickHandler() {
+      // Redirect to the desired page
+      window.location.href = 'image.html';
+    }
+
+    box.addEventListener('click', clickHandler);
+  </script>
+</body>
+
+</html>
